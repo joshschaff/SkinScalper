@@ -41,3 +41,18 @@ data class SuggestedPricesV1(val opSkinsPrice : Int,
         }
     }
 }
+
+//this is a comment
+
+/**
+ * this is also a multiline comment
+ * this is line 2
+ */
+
+
+/*data class PriceListV2(mean : Int,
+        min : Int,
+        max : Int,
+        normalized_mean : Int,
+        normalized_min: Int,
+*/

@@ -24,7 +24,7 @@ sealed class OPSkinsRequestBuilder : APIRequestBuilder(){
 
     // protected keyword means subclasses can access it, but unrelated classes cannot
 
-    protected fun getUri(pathAdd: String, vararg params : Pair<String,String>) : URI {
+    override fun getUri(pathAdd: String, vararg params : Pair<String,String>) : URI {
         val builder = URIBuilder()
                 .setScheme(scheme)
                 .setHost(host)
@@ -38,8 +38,6 @@ sealed class OPSkinsRequestBuilder : APIRequestBuilder(){
         }
         return  builder.build()
     }
-
-    inline fun <reified T> Gson.fromJson(json: JsonElement) = this.fromJson<T>(json, object: TypeToken<T>() {}.type)
 
 
     class CashoutInterface : OPSkinsRequestBuilder() {
@@ -65,6 +63,9 @@ sealed class OPSkinsRequestBuilder : APIRequestBuilder(){
             val jsonElement = Gson().fromJson(json, JsonElement::class.javaObjectType).asJsonObject.get("response").asJsonObject.get("prices").asJsonObject
             return customGsonBuilder.fromJson(jsonElement, object : TypeToken<Map<String, SuggestedPricesV1>>(){}.type)
         }
+
+
+        //fun getPriceListV2() : Map<String, >
     }
 
     class PaymentsInterface : OPSkinsRequestBuilder(){
